@@ -46,7 +46,8 @@ DJANGO_APPS = [
 
 #CREAR APLICACION Y TENERLAS ORDENARLAS
 PROJECT_APPS = [
-
+    'apps.blog',
+    'apps.category',
 ]
 
 #PAQUETES DE REQUIREMENTS
