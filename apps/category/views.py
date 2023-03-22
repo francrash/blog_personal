@@ -7,7 +7,9 @@ class ListCategoriesView(APIView):
     permission_classes = (permissions.AllowAny,)
 
     def get(self, request, format=None):
-        if Category.objects.all().exist():
+        if Category.objects.all().exists():
+            
+            
             print('Categories List')
             return Response({'categories': "test message"}, status=status.HTTP_200_OK) 
         else:
