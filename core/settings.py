@@ -80,7 +80,7 @@ CKEDITOR_CONFIG = {
     }
     
 }
-CKEDITOR_UPLOAD_PATH = '/media/'
+CKEDITOR_UPLOAD_PATH = 'uploads/'
 
 
 
