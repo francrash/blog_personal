@@ -10,8 +10,8 @@ def blog_thumbnail_directory(instance,filename): #buena practica para decir el d
 
 class Post(models.Model):
     title =         models.CharField(max_length=255)
-    sulg =          models.SlugField(max_length=255, unique=True)
-    thumbnail =     models.ImageField(upload_to=blog_thumbnail_directory)
+    slug =          models.SlugField(max_length=255, unique=True)
+    thumbnail =     models.ImageField(upload_to=blog_thumbnail_directory,max_length=500)
 
     description =   models.TextField(max_length=255) #descripcion pequeña
     content =       RichTextField()

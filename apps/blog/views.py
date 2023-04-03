@@ -9,7 +9,10 @@ class BlogListView(APIView):
 
     def get(self,request, format=None):
         if Post.objects.all().exists():
-            print('list posts')
-            return Response({'post': 'test message'}, status=status.HTTP_200_OK) 
+
+            posts = Post.objects.all()
+            serializer = PostSerializer(posts, many=True)
+
+            return Response({'posts': serializer.data}, status=status.HTTP_200_OK) 
         else:
             return Response({'error': "No posts found"}, status=status.HTTP_404_NOT_FOUND)
