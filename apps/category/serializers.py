@@ -4,7 +4,7 @@ from .models import *
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model= Category
-        field=[
+        fields=[
             'id',
             'name',
             'slug',
