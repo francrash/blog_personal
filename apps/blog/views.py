@@ -34,34 +34,54 @@ class ListPostsByCategoryView(APIView):
             posts = Post.objects.order_by("-published").all()
             
             # Si la categoria tiene padre
-            if category.parent:
-                posts = posts.filter(category=category)
+            #if category.parent:
+             #   posts = posts.filter(category=category)
                
             # si no tiene una categoria padre quiere decir que es una categoria padre
-            else:
+           # else:
 
                 #filtrar por categoria sola
-                if not Category.objects.filter(parent=category).exists():
-                    posts.filter(category=category)
+            if not Category.objects.filter(parent=category).exists():
+                    
+                posts= posts.filter(category=category)
 
                 # Si la categoria padre tiene hijos, filtrar por la categoria padre y sus hijos
-                else:
-                    sub_categories = Category.objects.filter(parent=category)
-                    filtered_categories = [category]
+            else:
+                sub_categories = Category.objects.filter(parent=category)
+                filtered_categories = [category]
 
-                    for cat in sub_categories:
-                        filtered_categories.append(cat)
+                for cat in sub_categories:
+                    filtered_categories.append(cat)
                     
-                    filtered_categories= tuple(filtered_categories)
-                    posts = posts.filter(category__in = filtered_categories)
+                filtered_categories= tuple(filtered_categories)
+                posts = posts.filter(category__in = filtered_categories)
+                    
 
-                paginator = SmallSetPagination()
-                results = paginator.paginate_queryset(posts,request)
-                serializer = PostListSerializer(results,many=True)
+            paginator = SmallSetPagination()
+            results = paginator.paginate_queryset(posts,request)
+            serializer = PostListSerializer(results,many=True)
                     
-                return paginator.get_paginated_response({'posts': serializer.data})
+            return paginator.get_paginated_response({'posts': serializer.data})
             
         else:
             return Response({'error': 'Noposts Found'}, status=status.http_404_NOT_FOUND)
         
         
+class PostDetailView(APIView):
+    def get(self,request,slug, format=None):
+
+        if Post.objects.filter(slug=slug).exists():
+            post = Post.objects.get(slug=slug)
+
+            serializer = PostSerializer(post)
+
+            address = request.META.get('HTTP_XFORWARDED_FOR')
+            if address:
+                ip = address.split(',')[-1].strip()
+            else:
+                ip.request.META.get('REMOTE_ADDR')
+
+            return Response({'post': serializer.data}, status=status.HTTP_200_OK) 
+        else:
+            return Response({'error': "No posts detail"}, status=status.HTTP_404_NOT_FOUND)
+
