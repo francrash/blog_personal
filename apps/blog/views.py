@@ -1,7 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, permissions
-from .models import Category,Post
+from .models import Category,Post, ViewCount
 from .serializers import PostSerializer, PostListSerializer
 from .pagination import SmallSetPagination, MediumSetPagination, LargeSetPagination
 
@@ -76,10 +76,18 @@ class PostDetailView(APIView):
             serializer = PostSerializer(post)
 
             address = request.META.get('HTTP_XFORWARDED_FOR')
+           
             if address:
                 ip = address.split(',')[-1].strip()
             else:
-                ip.request.META.get('REMOTE_ADDR')
+                ip = request.META.get('REMOTE_ADDR')
+
+            if not ViewCount.objects.filter(post=post,ip_address = ip):
+                view = ViewCount(post=post,ip_address = ip)
+                view.save()
+                post.views += 1
+                post.save()
+
 
             return Response({'post': serializer.data}, status=status.HTTP_200_OK) 
         else:
