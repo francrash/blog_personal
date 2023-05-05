@@ -25,12 +25,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY=os.environ.get('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG=os.environ.get('DEBUG')
+DEBUG = os.environ.get('DEBUG')
 
-ALLOWED_HOSTS=env.list('ALLOWED_HOSTS_DEV')
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS_DEV')
 
 
 # Application definition
@@ -44,14 +44,14 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
 ]
 
-#CREAR APLICACION Y TENERLAS ORDENARLAS
+# CREAR APLICACION Y TENERLAS ORDENARLAS
 PROJECT_APPS = [
     'apps.blog',
     'apps.category',
 ]
 
-#PAQUETES DE REQUIREMENTS
-THIRD_PARTY_APPS= [
+# PAQUETES DE REQUIREMENTS
+THIRD_PARTY_APPS = [
     'corsheaders',
     'rest_framework',
     'ckeditor',
@@ -61,7 +61,7 @@ THIRD_PARTY_APPS= [
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
 
-#CKEDITOR
+# CKEDITOR
 
 CKEDITOR_CONFIG = {
     # 'default': {
@@ -78,10 +78,9 @@ CKEDITOR_CONFIG = {
         'toolbar': 'full',
         'autoParagraph': False
     }
-    
+
 }
 CKEDITOR_UPLOAD_PATH = 'uploads/'
-
 
 
 MIDDLEWARE = [
@@ -176,31 +175,24 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASES':[
+    'DEFAULT_PERMISSION_CLASES': [
         'rest_framework.permissions.IsAuthenticateOrReadOnly'
     ]
 }
 
-#CORS_ORIGIN_WHITELIST=env.list('CORS_ORIGIN_WHITELIST_DEV')
+# CORS_ORIGIN_WHITELIST=env.list('CORS_ORIGIN_WHITELIST_DEV')
 
-CSRF_TRUSTED_ORIGINS=env.list('CSRF_TRUSTED_ORIGINS_DEV')
+CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS_DEV')
 
-EMAIL_BACKEND='django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 if not DEBUG:
-    ALLOWED_HOSTS=env.list('ALLOWED_HOSTS_DEPLOY')
+    ALLOWED_HOSTS = env.list('ALLOWED_HOSTS_DEPLOY')
     CORS_ORIGIN_WHITELIST = env.list('CORS_ORIGIN_WHITELIST_DEPLOY')
     CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS_DEPLOY')
-
 
     DATABASES = {
         "default": env.db("DATABASE_URL"),
     }
     DATABASES["default"]["ATOMIC_REQUESTS"] = True
-
-
-
-
-
-
