@@ -2,6 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, permissions
 from .models import Category,Post, ViewCount
+from django.db.models import Q
 from .serializers import PostSerializer, PostListSerializer
 from .pagination import SmallSetPagination, MediumSetPagination, LargeSetPagination
 
@@ -93,3 +94,16 @@ class PostDetailView(APIView):
         else:
             return Response({'error': "No posts detail"}, status=status.HTTP_404_NOT_FOUND)
 
+
+class SearchBlogView(APIView):
+    def get(self, request, format=None):
+
+        search_term= request.query_params.get('s')
+        matches = Post.objects.filter(
+            Q(title__icontains = search_term) | 
+            Q(description__icontains = search_term) | 
+            Q(category__name__icontains = search_term)
+        )
+        
+        serializer = PostListSerializer(matches, many=True)
+        return Response({'filtered_posts': serializer.data}, status=status.HTTP_200_OK) 
