@@ -18,7 +18,7 @@ class BlogListView(APIView):
             paginator = SmallSetPagination()
             results = paginator.paginate_queryset(posts, request)
 
-            serializer = PostListSerializer(posts, many=True)
+            serializer = PostListSerializer(results, many=True)
 
             return Response({'posts': serializer.data}, status=status.HTTP_200_OK)
         else:
@@ -108,6 +108,11 @@ class SearchBlogView(APIView):
             Q(description__icontains=search_term) |
             Q(category__name__icontains=search_term)
         )
+        paginator = LargeSetPagination()
+        results = paginator.paginate_queryset(matches, request)
 
-        serializer = PostListSerializer(matches, many=True)
-        return Response({'filtered_posts': serializer.data}, status=status.HTTP_200_OK)
+        
+
+        serializer = PostListSerializer(results, many=True)
+        return paginator.get_paginated_response({'filtered_posts': serializer.data})
+        #return Response({'filtered_posts': serializer.data}, status=status.HTTP_200_OK)

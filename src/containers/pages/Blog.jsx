@@ -5,17 +5,26 @@ import Footer from "components/navigation/footer"
 import { useEffect } from "react"
 import { Helmet } from 'react-helmet-async'
 import { get_categories } from "redux/actions/categories/categories"
+import { get_blog_list, get_blog_list_page } from "redux/actions/blog/blog"
 import { connect } from 'react-redux'
 
 
 
 function Blog({
     get_categories,
-    categories
+    categories,
+    get_blog_list,
+    get_blog_list_page,
+    post,
+    count,
+    next,
+    previous
 }) {
     useEffect(() => {
         window.scrollTo(0, 0)
         get_categories()
+        get_blog_list()
+        get_blog_list_page()
     }, [])
 
 
@@ -60,8 +69,15 @@ function Blog({
 
 const mapStateToProps = state => ({
     categories: state.categories.categories,
+    posts: state.blog.blog_list,
+    count: state.blog.count,
+    next: state.blog.next,
+    previous: state.blog.previous,
+
 
 });
 export default connect(mapStateToProps, {
-    get_categories
+    get_categories,
+    get_blog_list,
+    get_blog_list_page,
 })(Blog)
