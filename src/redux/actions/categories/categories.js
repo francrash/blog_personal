@@ -26,7 +26,7 @@ export const get_categories = () => async dispatch => {
             dispatch({
                 type: GET_CATEGORIES_FAIL
             });
-            console.log(res);
+            //console.log(res);
 
         }
     } catch (err) {

@@ -1,30 +1,33 @@
 
+import Footer from "components/navigation/footer"
 import Navbar from "components/navigation/navbar"
 import Layout from "hocs/layouts/Layout"
-import Footer from "components/navigation/footer"
 import { useEffect } from "react"
-import { Helmet } from 'react-helmet-async'
-import { get_categories } from "redux/actions/categories/categories"
-import { get_blog_list, get_blog_list_page } from "redux/actions/blog/blog"
-import { connect } from 'react-redux'
+import { Helmet } from 'react-helmet-async';
+import { get_categories } from "redux/actions/categories/categories";
+import { get_blog_list, get_blog_list_page } from "redux/actions/blog/blog";
+import { connect } from "react-redux";
 
-
+import CategoriesHeader from "components/blog/categoriesHeader";
+//import BlogList from "components/blog/BlogList";
 
 function Blog({
     get_categories,
     categories,
     get_blog_list,
     get_blog_list_page,
-    post,
+    posts,
     count,
     next,
-    previous
+    previous,
 }) {
+
     useEffect(() => {
         window.scrollTo(0, 0)
         get_categories()
         get_blog_list()
-        get_blog_list_page()
+        //get_blog_list_page()
+
     }, [])
 
 
@@ -55,8 +58,8 @@ function Blog({
 
             </Helmet>
             <Navbar />
-            <div className="pt-28 ">
-                Blog
+            <div className="pt-24 ">
+                <CategoriesHeader categories={categories && categories} />
             </div>
 
             <div className="">
@@ -75,9 +78,10 @@ const mapStateToProps = state => ({
     previous: state.blog.previous,
 
 
-});
+})
 export default connect(mapStateToProps, {
     get_categories,
     get_blog_list,
     get_blog_list_page,
 })(Blog)
+

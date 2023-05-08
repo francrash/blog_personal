@@ -11,6 +11,7 @@ class BlogListView(APIView):
     permission_classes = (permissions.AllowAny,)
 
     def get(self, request, format=None):
+
         if Post.postobjects.all().exists():
 
             posts = Post.postobjects.all()
@@ -66,21 +67,19 @@ class ListPostsByCategoryView(APIView):
             return paginator.get_paginated_response({'posts': serializer.data})
 
         else:
-            return Response({'error': 'Noposts Found'}, status=status.http_404_NOT_FOUND)
+            return Response({'error': 'No posts Found'}, status=status.HTTP_404_NOT_FOUND)
 
 
 class PostDetailView(APIView):
-    permission_classes = (permissions.AllowAny)
+    permission_classes = (permissions.AllowAny,)
 
     def get(self, request, slug, format=None):
-
         if Post.postobjects.filter(slug=slug).exists():
-            post = Post.postobjects.get(slug=slug)
 
+            post = Post.postobjects.get(slug=slug)
             serializer = PostSerializer(post)
 
-            address = request.META.get('HTTP_XFORWARDED_FOR')
-
+            address = request.META.get('HTTP_X_FORWARDED_FOR')
             if address:
                 ip = address.split(',')[-1].strip()
             else:
@@ -94,25 +93,23 @@ class PostDetailView(APIView):
 
             return Response({'post': serializer.data}, status=status.HTTP_200_OK)
         else:
-            return Response({'error': "No posts detail"}, status=status.HTTP_404_NOT_FOUND)
+            return Response({'error': 'Post doesnt exist'}, status=status.HTTP_404_NOT_FOUND)
 
 
 class SearchBlogView(APIView):
-    permission_classes = (permissions.AllowAny)
+    permission_classes = (permissions.AllowAny,)
 
     def get(self, request, format=None):
-
         search_term = request.query_params.get('s')
         matches = Post.postobjects.filter(
             Q(title__icontains=search_term) |
             Q(description__icontains=search_term) |
+            Q(content__icontains=search_term) |
             Q(category__name__icontains=search_term)
         )
-        paginator = LargeSetPagination()
-        results = paginator.paginate_queryset(matches, request)
 
-        
+        paginator = SmallSetPagination()
+        results = paginator.paginate_queryset(matches, request)
 
         serializer = PostListSerializer(results, many=True)
         return paginator.get_paginated_response({'filtered_posts': serializer.data})
-        #return Response({'filtered_posts': serializer.data}, status=status.HTTP_200_OK)
