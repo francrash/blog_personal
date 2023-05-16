@@ -1,6 +1,6 @@
 function Testimonial(){
     return(
-        <div className="bg-white mt-8 pt-16 lg:py-24">
+        <div className="bg-white pt-16 lg:py-24">
       <div className="bg-gray-50 pb-16 lg:relative lg:z-10 lg:pb-0">
         <div className="lg:mx-12 lg:grid lg:max-w-full lg:grid-cols-3 lg:gap-8 lg:px-8">
           <div className="relative lg:-my-8">

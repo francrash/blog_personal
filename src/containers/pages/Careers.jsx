@@ -1,93 +1,84 @@
-
-import Navbar from "components/navigation/navbar"
+import Features from "components/careers/Features"
+import Header from "components/careers/Header"
+import PositionsList from "components/careers/PositionsList"
+import Testimonial from "components/careers/Testimonial"
+import Footer from "components/navigation/Footer"
+import Navbar from "components/navigation/Navbar"
 import Layout from "hocs/layouts/Layout"
-import Footer from "components/navigation/footer"
-import Header from "components/careers/header"
-import Testimonial from "components/careers/testimonial"
-import PositionList from "components/careers/positionList"
-import Features from "components/careers/features"
 import { useEffect } from "react"
-import{Helmet} from 'react-helmet-async'
+import { Helmet } from 'react-helmet-async';
 
-function Careers(){
-    useEffect(()=>{
-        window.scrollTo(0,0)
-      },[])
-    return(
+function Careers() {
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+    return (
         <Layout>
-             <Helmet>
-            <title>Francisco |  Careers</title>
-            <meta name="description" content="Portfolio Web, Made your webPage" />
-            <meta name="keywords" content="Portfolio, web, app mobile, react, python" />
-            <meta name="robots" content='all' />
-            <link rel="canonical" href="https://murkiva.com" />
-            <meta name="author" content='Francisco Chacon' />
-            <meta name="publisher" content='Francisco Chacon' />
+            <Helmet>
+                <title>Francisco | Careers</title>
+                <meta name="description" content="Agencia de software y marketing digital. Servicios de creacion de pagina web y desarrollo de aplicaciones." />
+                <meta name="keywords" content='agencia de software, agencia de marketing, creacion de pagina web' />
+                <meta name="robots" content='all' />
+                <link rel="canonical" href="https://www.murkiva.com/" />
+                <meta name="author" content='Murkiva' />
+                <meta name="publisher" content='Murkiva' />
 
-            {/* Social Media Tags */}
-            <meta property="og:title" content='Francisco |  Software Developer' />
-                <meta property="og:description" content='Portfolio Web, Made your webPage' />
+                {/* Social Media Tags */}
+                <meta property="og:title" content='Murkiva | Software Agency' />
+                <meta property="og:description" content='Agencia de software y marketing digital. Servicios de creacion de pagina web y desarrollo de aplicaciones.' />
                 <meta property="og:url" content="https://www.murkiva.com/" />
                 <meta property="og:image" content='https://bafybeicwrhxloesdlojn3bxyjqnxgsagtd4sl53a7t4cn4vfe2abmybzua.ipfs.w3s.link/lightbnuilbg.jpg' />
 
-                <meta name="twitter:title" content='Francisco |  Software Developer' />
+                <meta name="twitter:title" content='Murkiva | Software Agency' />
                 <meta
                     name="twitter:description"
-                    content='Portfolio Web, Made your webPage'
+                    content='Agencia de software y marketing digital. Servicios de creacion de pagina web y desarrollo de aplicaciones.'
                 />
                 <meta name="twitter:image" content='https://bafybeicwrhxloesdlojn3bxyjqnxgsagtd4sl53a7t4cn4vfe2abmybzua.ipfs.w3s.link/lightbnuilbg.jpg' />
                 <meta name="twitter:card" content="summary_large_image" />
-
-        </Helmet>
-            <Navbar/>
-            <div className="pt-28 ">
-            <Header/>
-            <Testimonial/>
-
-            <div className="bg-gray-50">
+            </Helmet>
+            <Navbar />
+            <div className="pt-28">
+                <Header />
+                <Testimonial />
+                <div className="bg-gray-50">
                     <div className=" mx-auto lg:mx-12 pt-24 pb-12">
                         <h3 className="lg:text-5xl text-3xl px-4 font-bold leading-6 text-gray-900">Work with top notch companies
-                    </h3>
+                        </h3>
                     </div>
                     <div className="mx-auto lg:mx-12 max-w-full py-12 px-4 sm:px-6 lg:px-8">
                         <div className="grid grid-cols-2 gap-8 md:grid-cols-6 lg:grid-cols-5">
-                        <div className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-                            <img className="h-12" src="https://tailwindui.com/img/logos/tuple-logo-gray-400.svg" alt="Tuple" />
-                        </div>
-                        <div className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-                            <img className="h-12" src="https://tailwindui.com/img/logos/mirage-logo-gray-400.svg" alt="Mirage" />
-                        </div>
-                        <div className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-                            <img className="h-12" src="https://tailwindui.com/img/logos/statickit-logo-gray-400.svg" alt="StaticKit" />
-                        </div>
-                        <div className="col-span-1 flex justify-center md:col-span-3 lg:col-span-1">
-                            <img
-                            className="h-12"
-                            src="https://tailwindui.com/img/logos/transistor-logo-gray-400.svg"
-                            alt="Transistor"
-                            />
-                        </div>
-                        <div className="col-span-2 flex justify-center md:col-span-3 lg:col-span-1">
-                            <img
-                            className="h-12"
-                            src="https://tailwindui.com/img/logos/workcation-logo-gray-400.svg"
-                            alt="Workcation"
-                            />
-                        </div>
+                            <div className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
+                                <img className="h-12" src="https://tailwindui.com/img/logos/tuple-logo-gray-400.svg" alt="Tuple" />
+                            </div>
+                            <div className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
+                                <img className="h-12" src="https://tailwindui.com/img/logos/mirage-logo-gray-400.svg" alt="Mirage" />
+                            </div>
+                            <div className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
+                                <img className="h-12" src="https://tailwindui.com/img/logos/statickit-logo-gray-400.svg" alt="StaticKit" />
+                            </div>
+                            <div className="col-span-1 flex justify-center md:col-span-3 lg:col-span-1">
+                                <img
+                                    className="h-12"
+                                    src="https://tailwindui.com/img/logos/transistor-logo-gray-400.svg"
+                                    alt="Transistor"
+                                />
+                            </div>
+                            <div className="col-span-2 flex justify-center md:col-span-3 lg:col-span-1">
+                                <img
+                                    className="h-12"
+                                    src="https://tailwindui.com/img/logos/workcation-logo-gray-400.svg"
+                                    alt="Workcation"
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
-
-            <Features/>
-            
-            <PositionList/>
-            
+                <Features />
+                <Features />
+                <PositionsList />
             </div>
-            
-            <div className="">
-                <Footer/>
-            </div>
-            
+            <Footer />
         </Layout>
     )
 }

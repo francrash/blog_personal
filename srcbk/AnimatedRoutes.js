@@ -9,7 +9,7 @@ import Blog from "containers/pages/Blog";
 import Search from "containers/pages/Search";
 import Category from "containers/pages/Category";
 import Careers from "containers/pages/Careers";
-import Abaout from "containers/pages/About";
+import About from "containers/pages/About";
 
 import { AnimatePresence } from 'framer-motion';
 
@@ -29,10 +29,10 @@ function AnimatedRoutes() {
                 <Route path="/servicios" element={<Services />} />
                 <Route path="/contacto" element={<Contact />} />
                 <Route path="/Blog" element={<Blog />} />
-                <Route path="/query?s=:term" element={<Search />} />
+                <Route path="/s=:term" element={<Search />} />
                 <Route path="/category/:slug" element={<Category />} />
                 <Route path="/carreras" element={<Careers />} />
-                <Route path="/nosotros" element={<Abaout />} />
+                <Route path="/nosotros" element={<About />} />
             </Routes>
         </AnimatePresence>
 

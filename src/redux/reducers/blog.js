@@ -19,10 +19,10 @@ const initialState = {
     previous: null
 };
 
-export default function blog(state = initialState, actions) {
-    const { type, payload } = actions;
+export default function blog(state = initialState, action) {
+    const { type, payload } = action;
 
-    switch (type) {
+    switch(type) {
         case GET_BLOG_LIST_CATEGORIES_SUCCESS:
             return {
                 ...state,
@@ -42,7 +42,7 @@ export default function blog(state = initialState, actions) {
         case GET_BLOG_LIST_SUCCESS:
             return {
                 ...state,
-                blog_list: payload.posts,
+                blog_list: payload.results.posts,
                 count: payload.count,
                 next: payload.next,
                 previous: payload.previous,
