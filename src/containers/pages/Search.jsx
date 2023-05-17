@@ -16,6 +16,7 @@ function Search({
     next,
     previous,
     search_blog,
+    search_blog_page,
 
 }) {
 
@@ -25,6 +26,7 @@ function Search({
     useEffect(() => {
         window.scrollTo(0, 0)
         search_blog(term)
+        search_blog_page(term)
 
     }, [])
 
@@ -78,5 +80,6 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, {
     search_blog,
+    search_blog_page
 
 })(Search)

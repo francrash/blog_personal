@@ -1,7 +1,8 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, permissions
-from .models import Category, Post, ViewCount
+from .models import Post, ViewCount
+from apps.category.models import Category
 from django.db.models import Q
 from .serializers import PostSerializer, PostListSerializer
 from .pagination import SmallSetPagination, MediumSetPagination, LargeSetPagination
@@ -11,19 +12,17 @@ class BlogListView(APIView):
     permission_classes = (permissions.AllowAny,)
 
     def get(self, request, format=None):
-
         if Post.postobjects.all().exists():
 
             posts = Post.postobjects.all()
 
             paginator = SmallSetPagination()
             results = paginator.paginate_queryset(posts, request)
-
             serializer = PostListSerializer(results, many=True)
 
-            return Response({'posts': serializer.data}, status=status.HTTP_200_OK)
+            return paginator.get_paginated_response({'posts': serializer.data})
         else:
-            return Response({'error': "No posts found"}, status=status.HTTP_404_NOT_FOUND)
+            return Response({'error': 'No posts found'}, status=status.HTTP_404_NOT_FOUND)
 
 
 class ListPostsByCategoryView(APIView):

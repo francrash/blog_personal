@@ -75,8 +75,8 @@ function Navbar() {
           <Link to='/' className="ml-4 mt-2">
 
             <img
-              //src={logo_boomslag}
-              src={'https://bafybeiczl4dcxupma2zeyilkukfl4yge64axnhajd722wxgin62mtts6uy.ipfs.w3s.link/murkivamarketing.png'}
+              src={logo_boomslag}
+              //src={'https://bafybeiczl4dcxupma2zeyilkukfl4yge64axnhajd722wxgin62mtts6uy.ipfs.w3s.link/murkivamarketing.png'}
               width={160}
               height={140}
               alt={'logo'}
@@ -107,8 +107,8 @@ function Navbar() {
           <Link to='/' className="ml-4 mt-2">
 
             <img
-              //src={logo_boomslag}
-              src={'https://bafybeiczl4dcxupma2zeyilkukfl4yge64axnhajd722wxgin62mtts6uy.ipfs.w3s.link/murkivamarketing.png'}
+              src={logo_boomslag}
+              //src={'https://bafybeiczl4dcxupma2zeyilkukfl4yge64axnhajd722wxgin62mtts6uy.ipfs.w3s.link/murkivamarketing.png'}
               width={160}
               height={140}
               alt={'logo'}
