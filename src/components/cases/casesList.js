@@ -1,10 +1,11 @@
-import CaseCard from "./caseCard"
+import CaseCard from "./CaseCard"
 import Carousel from '@itseasy21/react-elastic-carousel';
+
 function CasesList(){
-  
-  const posts = [
-        { 
-          id : 'qwer-1234',
+
+    const posts = [
+        {
+            id:'1234-qwer',
           title: 'Boost your conversion rate',
           href: '#',
           category: { name: 'Article', href: '#' },
@@ -23,7 +24,7 @@ function CasesList(){
           },
         },
         {
-          id: 'qwer-1235',
+            id:'5678-asdf',
           title: 'How to use search engine optimization to drive sales',
           href: '#',
           category: { name: 'Video', href: '#' },
@@ -42,7 +43,7 @@ function CasesList(){
           },
         },
         {
-          id: 'qwer-1236',
+            id:'4321-zxcv',
           title: 'Improve your customer experience',
           href: '#',
           category: { name: 'Case Study', href: '#' },
@@ -62,43 +63,35 @@ function CasesList(){
         },
       ]
 
-      const  breakPoints = [
-        { width: 1,  itemsToShow: 1 },
-        { width: 550, itemsToShow: 1, itemsToScroll: 1, pagination: false },
-        { width: 960, itemsToShow: 2,itemsToScroll: 2  },
-        { width: 1280, itemsToShow: 3, itemsToScroll: 2 },
-        //{ width: 1450, itemsToShow: 5 },
-        //{ width: 1750, itemsToShow: 6 },
-      ]
-      
+    const  breakPoints = [
+        { width: 1, itemsToShow: 1, itemsToScroll: 1 },
+        { width: 1280, itemsToShow: 2, itemsToScroll: 2 },
+        { width: 1750, itemsToShow: 3, itemsToScroll: 2 },
+        // { width: 1450, itemsToShow: 5 },
+        // { width: 1750, itemsToShow: 6 },
+    ]
 
     return(
-        <div>
-            <div className="relative px-4 pt-16 pb-20 sm:px-6 lg:px-8 lg:pb-28">
+        <div className="relative  px-4 pt-16 pb-20 sm:px-6 lg:px-8  lg:pb-28">
         <div className="absolute inset-0">
           <div className="h-1/3 bg-white sm:h-2/3" />
         </div>
         <div className="relative mx-auto max-w-full">
-        <Carousel
-            itemsToScroll={3}
-            itemsToShow={3}
-            breakPoints={breakPoints}
-            pagination={false}
-            itemPadding={[0,48]}
+          
+          <Carousel
+                itemsToScroll={3}
+                itemsToShow={3}
+                breakPoints={breakPoints}
+                pagination={false}
+                itemPadding={[0, 48]}
             >
           
-          
-            
-            {posts.map((post, index ) => (
+            {posts.map((post, index) => (
               <CaseCard index={index} data={post}/>
             ))}
-            
             </Carousel>
-          
         </div>
       </div>
-        </div>
     )
 }
-
 export default CasesList

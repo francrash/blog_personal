@@ -1,8 +1,3 @@
-
-import {connect} from 'react-redux'
-
-import {Link} from 'react-router-dom';
-
 const incentives = [
     {
       name: 'Free shipping',
@@ -21,7 +16,7 @@ const incentives = [
         "If you don't like it, trade it to one of your friends for something of theirs. Don't send it here though.",
     },
   ]
-
+  
   export default function Incentives() {
     return (
       <div className="bg-white">
@@ -55,8 +50,3 @@ const incentives = [
       </div>
     )
   }
-
-  const mapStateToProp = state=>({
-
-})
-
